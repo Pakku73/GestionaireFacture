@@ -63,6 +63,7 @@ Navigation
 
 ## Structure du projet
 
+```
 factureflow/
 │
 ├── apps/
@@ -80,6 +81,7 @@ factureflow/
 │   └── base.html
 │
 └── manage.py
+```
 
 ## Installation & utilisation
 
