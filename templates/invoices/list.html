@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Factures</h1>
+
+<a class="btn btn-primary" href="{% url 'invoices:create' %}">Créer une facture</a>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Numéro</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for invoice in object_list %}
+        <tr>
+            <td>{{ invoice.number }}</td>
+            <td>{{ invoice.created_at }}</td>
+            <td>
+                <a href="{% url 'invoices:detail' invoice.pk %}">Voir</a>
+            </td>
+            <td>
+            <a href="{% url 'invoices:pdf' invoice.pk %}" class="btn btn-primary">Télécharger en PDF</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if is_paginated %}
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Précédent</a>
+    {% endif %}
+
+    Page {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Suivant</a>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}

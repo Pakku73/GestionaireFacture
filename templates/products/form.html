@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>
+  {% if view.object %}
+    Modifier le produit
+  {% else %}
+    Créer un produit
+  {% endif %}
+</h1>
+
+<form method="post">
+  {% csrf_token %}
+
+  {% if view.object %}
+    <p>
+      <label>ID :</label><br>
+      <input type="text" value="{{ view.object.id }}" readonly class="form-control">
+    </p>
+  {% endif %}
+
+  {{ form.as_p }}
+
+  <button class="btn btn-success" type="submit">Enregistrer</button>
+</form>
+
+<a href="{% url 'products:list' %}" class="btn btn-secondary mt-2">Retour</a>
+{% endblock %}

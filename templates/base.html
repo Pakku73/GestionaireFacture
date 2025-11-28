@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FactureFlow</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../static/style.css">
+  </head>
+
+  <body>
+    <nav class="menu">
+        <a href="{% url 'products:list' %}"
+          class="btn {% if request.resolver_match.url_name == 'list' and request.resolver_match.app_name == 'products' %}active{% else %}inactive{% endif %}">
+            Produits
+        </a>
+
+        <a href="{% url 'invoices:list' %}"
+          class="btn {% if request.resolver_match.url_name == 'list' and request.resolver_match.app_name == 'invoices' %}active{% else %}inactive{% endif %}">
+            Factures
+        </a>
+    </nav>
+
+    <div class="container mt-4">{% block content %} {% endblock %}</div>
+  </body>
+</html>
